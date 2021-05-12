@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  wordpress:
+    # Here you put configuration of continer for wordpress that would use image that you build. Ports of webserver should be exposed to lacalhost
+    #...
+  database:
+    # Here you put configuration of continer for MySQL that would use any mysql image you like
+    #...
