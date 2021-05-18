@@ -10,7 +10,7 @@ define( 'DB_USER', 'wp_user' );
 define( 'DB_PASSWORD', 'wp_password' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'database:3306' );
+define( 'DB_HOST', 'database' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
