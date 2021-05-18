@@ -3,14 +3,22 @@ services:
   database:
     image: mysql:latest
     ports:
-    - "6666:3306"
+    - "3306:3306"
     restart: unless-stopped
     env_file: .env
     environment:
       - MYSQL_DATABASE=wordpress
-#    volumes:
-#      - dbdata:/var/lib/mysql
+    volumes:
+      - dbdata:/var/lib/mysql
     command: '--default-authentication-plugin=mysql_native_password'
-# wordpress:
-    # Here you put configuration of continer for wordpress that would use image that you build. Ports of webserver should be exposed to lacalhost
-    #...
+
+  wordpress:
+    build: .
+    ports:
+      - "3000:80"
+    restart: always
+    depends_on:
+      - database
+
+volumes:
+  dbdata:
