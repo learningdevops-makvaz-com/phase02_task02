@@ -1,8 +1,16 @@
-version: "3.9"
+version: "3.1"
 services:
-  wordpress:
-    # Here you put configuration of continer for wordpress that would use image that you build. Ports of webserver should be exposed to lacalhost
-    #...
   database:
-    # Here you put configuration of continer for MySQL that would use any mysql image you like
+    image: mysql:latest
+    ports:
+    - "6666:3306"
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=wordpress
+#    volumes:
+#      - dbdata:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+# wordpress:
+    # Here you put configuration of continer for wordpress that would use image that you build. Ports of webserver should be exposed to lacalhost
     #...
