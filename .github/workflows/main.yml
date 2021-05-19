@@ -34,3 +34,8 @@ jobs:
       
       - name: Build Docker Image with plugin v9
         run: docker build . -t danpaldev/wp-pluginv9:${SHORT_SHA} --build-arg version=v9
+      - name: Push Docker Image with plugin v8
+        run: docker push danpaldev/wp-pluginv8:${SHORT_SHA}
+
+      - name: Push Docker Image with plugin v9
+        run: docker push danpaldev/wp-pluginv9:${SHORT_SHA}
