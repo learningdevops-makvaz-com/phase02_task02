@@ -12,4 +12,6 @@ COPY ./wp-config.php /var/www/app/wordpress/wp-config.php
 
 COPY ${ver} /var/www/app/wordpress/wp-content/plugins/thank-after-post/thank-after-post-plugin.php
 
+RUN chmod -R 777 /var/www/app/wordpress/
+
 CMD ["/usr/bin/supervisord"]
