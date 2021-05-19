@@ -1,0 +1,28 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+        
+        #Github actions doesn't have SHORT SHA variable, so I will generate it - https://stackoverflow.com/a/64195658/13954598    
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+        
+      - name: Build Docker Image with plugin v8
+        run: docker build . -t danpaldev/wp-pluginv8:${SHORT_SHA} --build-arg version=v8
+      
+      - name: Build Docker Image with plugin v9
+        run: docker build . -t danpaldev/wp-pluginv9:${SHORT_SHA} --build-arg version=v9
