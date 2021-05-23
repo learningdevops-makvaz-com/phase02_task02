@@ -21,7 +21,6 @@ services:
     ports:
       - "80:80"
     restart: always
-    command: sh -c "/usr/bin/supervisord"
     volumes:
       - wordpress:/var/www/app/wordpress
     environment:
