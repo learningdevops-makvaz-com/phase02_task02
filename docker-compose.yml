@@ -14,11 +14,12 @@ services:
   
 
   wordpress:
-    #build: .
-    image: danpaldev/wp-pluginv9:f08293b
+    build: .
+    #image: danpaldev/wp-pluginv9:f08293b
     ports:
       - "3000:80"
     restart: always
+    command: sh -c "/usr/bin/supervisord"
     depends_on:
       - database
 
