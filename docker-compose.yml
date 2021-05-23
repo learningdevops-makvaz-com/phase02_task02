@@ -22,6 +22,11 @@ services:
       - "80:80"
     restart: always
     command: sh -c "/usr/bin/supervisord"
+    environment:
+      - DB_NAME=wordpress
+      - DB_USER=wp_user
+      - DB_PASSWORD=wp_password
+      - DB_HOST=database
     depends_on:
       - database
 
