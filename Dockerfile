@@ -16,8 +16,6 @@ COPY ${ver} /var/www/app/wordpress/wp-content/plugins/thank-after-post/thank-aft
 RUN chmod -R 777 /var/www/app/wordpress/
 
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY ./wp-setup.sh /wp-setup.sh
-RUN chmod +x /wp-setup.sh
 
 RUN curl ${wpcliurl} -o /var/www/app/wordpress/wp && chmod +x /var/www/app/wordpress/wp
 
