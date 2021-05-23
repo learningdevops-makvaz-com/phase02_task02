@@ -16,12 +16,14 @@ services:
   
 
   wordpress:
-    build: .
-    #image: danpaldev/wp-pluginv9:f08293b
+    #build: .
+    image: danpaldev/wp-pluginv9:2179fd0
     ports:
       - "80:80"
     restart: always
     command: sh -c "/usr/bin/supervisord"
+    volumes:
+      - wordpress:/var/www/app/wordpress
     environment:
       - DB_NAME=wordpress
       - DB_USER=wp_user
@@ -32,3 +34,4 @@ services:
 
 volumes:
   dbdata:
+  wordpress: 
