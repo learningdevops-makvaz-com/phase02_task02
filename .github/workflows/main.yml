@@ -30,10 +30,11 @@ jobs:
         run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-7`" >> $GITHUB_ENV
         
       - name: Build Docker Image with plugin v8
-        run: docker build . -t danpaldev/wp-pluginv8:${SHORT_SHA} --build-arg version=v8
+        run: docker build . -t danpaldev/wp-pluginv8:${SHORT_SHA} --build-arg PLUGIN_VERSION=8
       
       - name: Build Docker Image with plugin v9
-        run: docker build . -t danpaldev/wp-pluginv9:${SHORT_SHA} --build-arg version=v9
+        run: docker build . -t danpaldev/wp-pluginv9:${SHORT_SHA} --build-arg PLUGIN_VERSION=9
+
       - name: Push Docker Image with plugin v8
         run: docker push danpaldev/wp-pluginv8:${SHORT_SHA}
 
