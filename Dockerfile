@@ -1,6 +1,7 @@
 FROM korney4eg/nginx-php:latest
 
-ARG version
+ARG PLUGIN_VERSION 
+ENV PLUGIN_URL="https://github.com/korney4eg/thank-after-post-plugin/releases/download/v0.${PLUGIN_VERSION}.0/thank-after-post.zip"
 ARG WPCLI_URL="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
 
 RUN curl https://wordpress.org/latest.tar.gz -o latest.tar.gz && tar xzvf latest.tar.gz
