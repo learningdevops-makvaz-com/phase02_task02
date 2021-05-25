@@ -23,11 +23,7 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/app/wordpress
-    environment:
-      - DB_NAME=wordpress
-      - DB_USER=wp_user
-      - DB_PASSWORD=wp_password
-      - DB_HOST=database
+    env_file: .env
     depends_on:
       - database
 
