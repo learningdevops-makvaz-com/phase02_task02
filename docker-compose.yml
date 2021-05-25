@@ -1,8 +1,21 @@
 version: "3.9"
 services:
   wordpress:
-    # Here you put configuration of continer for wordpress that would use image that you build. Ports of webserver should be exposed to lacalhost
-    #...
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment: 
+      - WORDPRESS_DB_HOST=database
+      - WORDPRESS_DB_USER=wpuser
+      - WORDPRESS_DB_PASSWORD=passw0rd
+      - WORDPRESS_DB_NAME=wordpress
+
   database:
-    # Here you put configuration of continer for MySQL that would use any mysql image you like
-    #...
+    image: mysql
+    restart: always 
+    environment: 
+      - MYSQL_ROOT_PASSWORD=p@$$w0rd
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wpuser
+      - MYSQL_PASSWORD=passw0rd

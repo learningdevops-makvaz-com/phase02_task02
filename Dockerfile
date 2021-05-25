@@ -1,11 +1,18 @@
 # don't change this line
 FROM korney4eg/nginx-php:latest
 
-# your code goes here
-# Make nginx use app.conf configuration to properly render php files
-# Make sure that index.php file is available in browser
-# expose needed ports
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+RUN mkdir /var/www/wordpress && cd /var/www/wordpress && wp core download --allow-root --locale=en_US 
+RUN apt -y update
+RUN apt -y upgrade
 
+COPY ./wp-config.php /var/www/wordpress/
+COPY ./app.conf /etc/nginx/conf.d/
 
-# don't change this line
-CMD ["/usr/bin/supervisord"]
+RUN chown -R www-data:www-data /var/www/
+# CMD [ "wp", "core", "install", "--url=localhost:8080", "--title=Docker_container", "--admin_user=admin", "--admin_password=pass123", "--admin_email=admin@mail.com"\
+# , "--path=/var/www/wordpress", "--allow-root" ]
+
+ENTRYPOINT ["/usr/bin/supervisord"]
