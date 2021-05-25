@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   database:
-    image: mysql:latest
+    image: mysql:8
     cap_add:
       - SYS_NICE
     ports:
@@ -16,8 +16,8 @@ services:
   
 
   wordpress:
-    #build: .
-    image: danpaldev/wp-pluginv9:2179fd0
+    build: .
+    #image: danpaldev/wp-pluginv9:2179fd0
     ports:
       - "80:80"
     restart: always
