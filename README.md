@@ -14,5 +14,5 @@ or
 
 ```
 $ docker compose build --build-arg PLUGIN_VERSION=8
-$ docker compose run
+$ docker compose up
 ```
