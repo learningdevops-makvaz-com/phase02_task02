@@ -6,13 +6,13 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir /var/www/wordpress && cd /var/www/wordpress && wp core download --allow-root --locale=en_US 
 RUN apt -y update
-RUN apt -y upgrade
 
 COPY ./wp-config.php /var/www/wordpress/
 COPY ./app.conf /etc/nginx/conf.d/
+COPY ./thank-after-post.zip /
 
 RUN chown -R www-data:www-data /var/www/
-# CMD [ "wp", "core", "install", "--url=localhost:8080", "--title=Docker_container", "--admin_user=admin", "--admin_password=pass123", "--admin_email=admin@mail.com"\
-# , "--path=/var/www/wordpress", "--allow-root" ]
+#CMD [ "wp", "core", "install", "--url=localhost:9000", "--title=Docker_container", "--admin_user=admin", "--admin_password=pass123", "--admin_email=admin@mail.com"\
+#, "--path=/var/www/wordpress", "--allow-root"]
 
 ENTRYPOINT ["/usr/bin/supervisord"]

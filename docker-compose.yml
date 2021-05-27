@@ -1,21 +1,36 @@
 version: "3.9"
 services:
-  wordpress:
-    image: wordpress
-    restart: always
-    ports:
-      - 8080:80
-    environment: 
-      - WORDPRESS_DB_HOST=database
-      - WORDPRESS_DB_USER=wpuser
-      - WORDPRESS_DB_PASSWORD=passw0rd
-      - WORDPRESS_DB_NAME=wordpress
-
   database:
     image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always 
     environment: 
       - MYSQL_ROOT_PASSWORD=p@$$w0rd
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wpuser
       - MYSQL_PASSWORD=passw0rd
+    ports: 
+      - 3306:3306
+  wordpress:
+    build: .
+    restart: always
+    ports:
+      - 9000:80
+    depends_on: 
+      - database
+    healthcheck:
+      test: [ "CMD","wp", "core", "install", "--url=localhost:9000", "--title=Docker_container", "--admin_user=admin", "--admin_password=pass123", "--admin_email=admin@mail.com", "--path=/var/www/wordpress", "--allow-root"]
+      interval: 5s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+    healthcheck:
+      test: ["CMD", "wp", "plugin", "install", "/thank-after-post.zip","--activate","--allow-root", "--path=/var/www/wordpress"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+        
+
+
