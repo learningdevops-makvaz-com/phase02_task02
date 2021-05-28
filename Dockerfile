@@ -9,10 +9,8 @@ RUN apt -y update
 
 COPY ./wp-config.php /var/www/wordpress/
 COPY ./app.conf /etc/nginx/conf.d/
-COPY ./thank-after-post.zip /
+COPY ./thank-after-post-0.9.0.zip /
 
 RUN chown -R www-data:www-data /var/www/
-#CMD [ "wp", "core", "install", "--url=localhost:9000", "--title=Docker_container", "--admin_user=admin", "--admin_password=pass123", "--admin_email=admin@mail.com"\
-#, "--path=/var/www/wordpress", "--allow-root"]
 
 ENTRYPOINT ["/usr/bin/supervisord"]
