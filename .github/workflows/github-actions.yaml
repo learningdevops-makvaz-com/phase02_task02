@@ -1,5 +1,8 @@
 name: Push docker image
-on: [push]
+on: 
+  push:
+    branches:
+      - master
 jobs:
   Push-Docker-Image:
     runs-on: ubuntu-latest
