@@ -9,6 +9,6 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: 🐳 Build and publish docker image to docker hub
         run: | 
-          docker build -t weblwabl/nginx_wp:latest 
+          docker build -t weblwabl/nginx_wp:latest .
           docker push weblwabl/nginx_wp:latest
       - run: echo "This job's status is ${{ job.status }}."
