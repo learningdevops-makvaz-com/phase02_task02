@@ -13,7 +13,8 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PW }}
       - name: 🐳 Build and publish docker image to docker hub
-        run: | 
-          docker build -t weblwabl/nginx_wp:latest .
-          docker push weblwabl/nginx_wp:latest
+        uses: docker/build-push-actions/checkout@v2
+        with:
+          push: true
+          tags: weblwabl/nginx_wp:latest
       - run: echo "This job's status is ${{ job.status }}."
