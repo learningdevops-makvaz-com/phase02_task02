@@ -7,10 +7,15 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir /var/www/wordpress && cd /var/www/wordpress && wp core download --allow-root --locale=en_US 
 RUN apt -y update
 
-COPY ./wp-config.php /var/www/wordpress/
-COPY ./app.conf /etc/nginx/conf.d/
-COPY ./thank-after-post-0.9.0.zip /
+COPY ./src/wp-config.php /var/www/wordpress/
+COPY ./src/app.conf /etc/nginx/conf.d/
+COPY ./plugins/ /plugins/
+COPY ./src /src/
+COPY ./supervisord/setup.conf /etc/supervisor/conf.d/
 
+RUN chmod +x /src/setup-wp.sh
 RUN chown -R www-data:www-data /var/www/
+
+WORKDIR /var/www/wordpress
 
 ENTRYPOINT ["/usr/bin/supervisord"]

@@ -18,18 +18,6 @@ services:
       - 9000:80
     depends_on: 
       - database
-    healthcheck:
-      test: [ "CMD","wp", "core", "install", "--url=localhost:9000", "--title=Docker_container", "--admin_user=admin", "--admin_password=pass123", "--admin_email=admin@mail.com", "--path=/var/www/wordpress", "--allow-root"]
-      interval: 5s
-      timeout: 5s
-      retries: 2
-      start_period: 10s
-    healthcheck:
-      test: ["CMD", "wp", "plugin", "install", "/thank-after-post.zip","--activate","--allow-root", "--path=/var/www/wordpress"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 20s
 
         
 
