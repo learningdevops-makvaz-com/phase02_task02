@@ -16,3 +16,12 @@ or
 $ docker compose build --build-arg PLUGIN_VERSION=8
 $ docker compose up
 ```
+---
+
+To completely destroy the resources created by docker compose run:
+
+```
+$ docker-compose down --volumes
+
+$ docker volume rm $(docker volume ls -q)
+```
