@@ -22,7 +22,7 @@ jobs:
         with:
           push: true
           ## Version with Thank after post 0.8.0 included
-          tags: weblwabl/nginx_wp:1.0
+          tags: weblwabl/nginx_wp:2.0
           ## Version with Thank after post 0.9.0 included 
           #tags: weblwabl/nginx_wp:2.0
 
