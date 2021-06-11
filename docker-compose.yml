@@ -5,15 +5,18 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always 
     environment: 
-      - MYSQL_ROOT_PASSWORD=p@$$w0rd
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wpuser
-      - MYSQL_PASSWORD=passw0rd
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports: 
       - 3306:3306
   wordpress:
     build: .
     restart: always
+    environment: 
+      - WP_PW=${WP_PW}
+      - WP_PLUGIN=${WP_PLUG2}
     ports:
       - 9000:80
     depends_on: 
