@@ -16,7 +16,7 @@ services:
     restart: always
     environment: 
       - WP_PW=${WP_PW}
-      - WP_PLUGIN=${WP_PLUG2}
+      - WP_PLUGIN=${WP_PLUG}
     ports:
       - 9000:80
     depends_on: 

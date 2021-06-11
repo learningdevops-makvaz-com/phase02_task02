@@ -21,9 +21,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          ## Version with Thank after post 9.0.0 included
-        # tags: weblwabl/nginx_wp:1.0
-          ## Version with Thank after post 10.0.0 included 
-          tags: weblwabl/nginx_wp:2.0
+          ## Version with Thank after post 0.8.0 included
+          tags: weblwabl/nginx_wp:1.0
+          ## Version with Thank after post 0.9.0 included 
+          #tags: weblwabl/nginx_wp:2.0
 
       - run: echo "This job's status is ${{ job.status }}."
