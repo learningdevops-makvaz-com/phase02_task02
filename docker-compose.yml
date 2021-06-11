@@ -1,8 +1,41 @@
-version: "3.9"
+version: '3.1'
+
+networks:
+  frontend:
+  backend:
+secrets:
+  db_root_password:
+    external: true
+  db_dba_password:
+    external: true
 services:
+
   wordpress:
-    # Here you put configuration of continer for wordpress that would use image that you build. Ports of webserver should be exposed to lacalhost
-    #...
-  database:
-    # Here you put configuration of continer for MySQL that would use any mysql image you like
-    #...
+    image: wordpress
+    ports:
+      - 8080:80
+    environment:
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=test #/run/secrets/mysql_password
+      - WORDPRESS_DB_HOST=mariadb
+      # - WORDPRESS_DATABASE_PORT_NUMBER=3306
+      - WORDPRESS_DB_NAME=wordpress
+
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_root_password
+      - MYSQL_PASSWORD_FILE=test #/run/secrets/mysql_password
+      - MYSQL_USER=wordpress
+      - MYSQL_DATABASE=wordpress
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      - backend
