@@ -4,24 +4,15 @@ services:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always 
-    environment: 
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    env_file: 
+      - .env
     ports: 
       - 3306:3306
   wordpress:
     build: .
     restart: always
-    environment: 
-      - WP_PW=${WP_PW}
-      - WP_PLUGIN=${WP_PLUG}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_CHARSET=${DB_CHARSET}
+    env_file: 
+      - .env
     ports:
       - 9000:80
     depends_on: 
