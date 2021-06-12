@@ -7,7 +7,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 COPY ./src/wp-config.php /var/www/wordpress/
 COPY ./src/app.conf /etc/nginx/conf.d/
-COPY ./plugins/ /plugins/
 COPY ./src /src/
 COPY ./supervisord/setup.conf /etc/supervisor/conf.d/
 
