@@ -12,8 +12,6 @@ COPY ./supervisord/setup.conf /etc/supervisor/conf.d/
 
 RUN chmod +x /src/setup-wp.sh && chown -R www-data:www-data /var/www/
 
-ENV TAG=2
-
 WORKDIR /var/www/wordpress
 
 ENTRYPOINT ["/usr/bin/supervisord"]
